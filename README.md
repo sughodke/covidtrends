@@ -2,6 +2,8 @@
 
 This is an [interactive graph / animation]() that charts the trajectory of global COVID-19 cases.
 
+![https://i.imgur.com/MhiFHEO.png](https://i.imgur.com/MhiFHEO.png)
+
 The graph plots the number of new confirmed cases in the past week, versus the total number of confirmed cases.
 
 When plotted in this way, exponential growth is displayed as a straight line.
