@@ -384,9 +384,9 @@ let app = new Vue({
     pullData(selectedData) {
 
       if (selectedData == 'Confirmed Cases') {
-       Plotly.d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv", this.processData);
+       Plotly.d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv", this.processData);
       } else if (selectedData == 'Reported Deaths') {
-       Plotly.d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv", this.processData);
+       Plotly.d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv", this.processData);
       }
     },
 
@@ -395,7 +395,6 @@ let app = new Vue({
     },
 
     processData(data) {
-
       let countriesToLeaveOut = ['Cruise Ship', 'Diamond Princess'];
 
       let renameCountries = {
@@ -403,17 +402,17 @@ let app = new Vue({
         'Korea, South': 'South Korea'
       };
 
-      let countries = data.map(e => e["Country/Region"]);
+      let countries = data.map(e => e["Province_State"]);
       countries = this.removeRepeats(countries);
 
-      let dates = Object.keys(data[0]).slice(4);
+      let dates = Object.keys(data[0]).slice(11);
       this.dates = dates;
 
       //this.day = this.dates.length;
 
       let myData = [];
       for (let country of countries){
-        let countryData = data.filter(e => e["Country/Region"] == country);
+        let countryData = data.filter(e => e["Province_State"] == country);
         let arr = [];
 
         for (let date of dates) {
